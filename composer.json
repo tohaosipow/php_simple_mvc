@@ -1,0 +1,13 @@
+{
+    "name": "tohaosipow/mvc_framework",
+    "description": "Simple example to create mvc in php",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anton Osipov",
+            "email": "anton@osipov.website"
+        }
+    ],
+    "require": {}
+}
