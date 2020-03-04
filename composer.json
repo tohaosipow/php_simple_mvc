@@ -9,5 +9,15 @@
             "email": "anton@osipov.website"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "framework",
+            "App\\": "app"
+        },
+        "files": [
+            "app/config.php",
+            "app/routes.php"
+        ]
+    }
 }
