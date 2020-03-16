@@ -10,7 +10,7 @@ class HelloController extends Controller
 {
     public function index(){
 
-        return '<h1>Hello Controller</h1>';
+        return $this->view('index.php', ['a' => 1234]);
     }
 
     public function method2(){
