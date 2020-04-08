@@ -8,9 +8,8 @@ use Framework\Controller;
 
 class HelloController extends Controller
 {
-    public function index(){
-
-        return $this->view('index.php', ['a' => 1234]);
+    public function index($request, $city_id){
+        return $this->view('index.php', ['a' => $city_id]);
     }
 
     public function method2(){

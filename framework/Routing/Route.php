@@ -51,5 +51,21 @@ class Route
     }
 
 
+    public function getParams(){
+        $params = [];
+        preg_match_all('/{([a-z]\w*)}/', $this->path, $params);
+        return $params[1];
+    }
+
+    public function getMask(){
+        $params = $this->getParams();
+        $path = $this->path;
+        foreach ($params as $param) {
+            $path = preg_replace("/{[a-z]\w*}/", "(\w*)", $path);
+        }
+        return "~".$path."/?$~";
+    }
+
+
 
 }
