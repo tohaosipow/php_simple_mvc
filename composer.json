@@ -9,7 +9,9 @@
             "email": "anton@osipov.website"
         }
     ],
-    "require": {},
+    "require": {
+        "ext-pdo": "*"
+    },
     "autoload": {
         "psr-4": {
             "Framework\\": "framework",
