@@ -16,6 +16,12 @@ class MysqlModel extends Model
         $this->connection = MysqlConnection::getConnection();
     }
 
+    public function getById($id)
+    {
+        $query = $this->connection->prepare("SELECT * FROM `{$this->table}` WHERE {$this->getIdField()} = $id");
+        $query->execute();
+        return $query->fetchAll(\PDO::FETCH_CLASS)[0];
+    }
 
     public function getWhere($conditions)
     {
@@ -27,9 +33,20 @@ class MysqlModel extends Model
         // TODO: Implement deleteWhere() method.
     }
 
-    public function updateWhere($conditions)
+    public function updateWhere($conditions, $data)
     {
         // TODO: Implement updateWhere() method.
+    }
+
+
+    public function updateById($id, $data)
+    {
+        $data_str = implode(", ", array_map(function ($k) use ($data){return "`$k` = :$k";}, array_keys($data)));
+        $query = $this->connection->prepare("UPDATE `{$this->table}` SET {$data_str} WHERE {$this->getIdField()} = $id");
+        foreach ($data as $key => $field) {
+            $query->bindValue(":".$key, $field);
+        }
+        $query->execute();
     }
 
     public function create($fields)
@@ -40,6 +57,7 @@ class MysqlModel extends Model
 
         $query = $this->connection->prepare("INSERT INTO {$this->table} ({$keys}) VALUES ($placeholders)");
         foreach ($fields as $key => $field){
+            var_dump($key, $field);
             $query->bindParam(":$key", $field);
         }
         $query->execute();
