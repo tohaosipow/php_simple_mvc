@@ -5,12 +5,14 @@ namespace Framework;
 
 
 use App\MysqlConnection;
+use PDO;
 
 class MysqlModel extends Model
 {
 
     protected $table;
     protected $connection;
+
     public function __construct()
     {
         $this->connection = MysqlConnection::getConnection();
@@ -20,7 +22,7 @@ class MysqlModel extends Model
     {
         $query = $this->connection->prepare("SELECT * FROM `{$this->table}` WHERE {$this->getIdField()} = $id");
         $query->execute();
-        return $query->fetchAll(\PDO::FETCH_CLASS)[0];
+        return $query->fetchAll(PDO::FETCH_CLASS)[0];
     }
 
     public function getWhere($conditions)
@@ -41,10 +43,12 @@ class MysqlModel extends Model
 
     public function updateById($id, $data)
     {
-        $data_str = implode(", ", array_map(function ($k) use ($data){return "`$k` = :$k";}, array_keys($data)));
+        $data_str = implode(", ", array_map(function ($k) use ($data) {
+            return "`$k` = :$k";
+        }, array_keys($data)));
         $query = $this->connection->prepare("UPDATE `{$this->table}` SET {$data_str} WHERE {$this->getIdField()} = $id");
         foreach ($data as $key => $field) {
-            $query->bindValue(":".$key, $field);
+            $query->bindValue(":" . $key, $field);
         }
         $query->execute();
     }
@@ -53,22 +57,24 @@ class MysqlModel extends Model
     {
         $keys_array = array_keys($fields);
         $keys = implode(", ", $keys_array);
-        $placeholders = implode(", ", array_map(function($el){return ":$el";}, $keys_array));
+        $placeholders = implode(", ", array_map(function ($el) {
+            return ":$el";
+        }, $keys_array));
 
         $query = $this->connection->prepare("INSERT INTO {$this->table} ({$keys}) VALUES ($placeholders)");
-        foreach ($fields as $key => $field){
+        foreach ($fields as $key => $field) {
             var_dump($key, $field);
             $query->bindParam(":$key", $field);
         }
         $query->execute();
-       // $this->connection->prepare();
+        // $this->connection->prepare();
 
     }
 
     public function all()
     {
         $query = $this->connection->query("SELECT * FROM `{$this->table}`");
-        return $query->fetchAll(\PDO::FETCH_CLASS);
+        return $query->fetchAll(PDO::FETCH_CLASS);
 
     }
 }

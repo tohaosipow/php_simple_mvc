@@ -5,9 +5,7 @@ namespace App\MVC\Controllers;
 
 
 use App\MVC\Models\TodoModel;
-use App\MVC\Models\UserModel;
 use Framework\Controller;
-use Framework\MysqlModel;
 
 class TodosController extends Controller
 {

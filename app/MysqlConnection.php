@@ -12,7 +12,7 @@ class MysqlConnection
 
     public static function getConnection()
     {
-        if(!self::$connection) self::$connection = new PDO('mysql:dbname=framework;host=localhost', 'framework', 'Framework123@');
+        if (!self::$connection) self::$connection = new PDO('mysql:dbname=framework;host=localhost', 'framework', 'Framework123@');
         return self::$connection;
     }
 

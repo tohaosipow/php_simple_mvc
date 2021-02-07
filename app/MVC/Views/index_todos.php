@@ -27,8 +27,10 @@
                                         <?= $todo->task ?>
                                     </div>
                                     <div>
-                                        <form method="post" id="complete-<?= $todo->id ?>" action="/todos/<?= $todo->id ?>/complete">
-                                            <input onchange="$('form#complete-<?= $todo->id ?>').submit()" type="checkbox" <?= $todo->complete ? "checked" : "" ?>>
+                                        <form method="post" id="complete-<?= $todo->id ?>"
+                                              action="/todos/<?= $todo->id ?>/complete">
+                                            <input onchange="$('form#complete-<?= $todo->id ?>').submit()"
+                                                   type="checkbox" <?= $todo->complete ? "checked" : "" ?>>
                                         </form>
                                     </div>
                                 </div>

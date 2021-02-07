@@ -1,25 +1,25 @@
 {
-    "name": "tohaosipow/mvc_framework",
-    "description": "Simple example to create mvc in php",
-    "type": "project",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Anton Osipov",
-            "email": "anton@osipov.website"
-        }
-    ],
-    "require": {
-        "ext-pdo": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Framework\\": "framework",
-            "App\\": "app"
-        },
-        "files": [
-            "app/config.php",
-            "app/routes.php"
-        ]
+  "name": "tohaosipow/mvc_framework",
+  "description": "Simple example to create mvc in php",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Anton Osipov",
+      "email": "anton@osipov.website"
     }
+  ],
+  "require": {
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "framework",
+      "App\\": "app"
+    },
+    "files": [
+      "app/config.php",
+      "app/routes.php"
+    ]
+  }
 }

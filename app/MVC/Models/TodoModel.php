@@ -11,5 +11,4 @@ class TodoModel extends MysqlModel
     protected $table = "todos";
 
 
-
 }

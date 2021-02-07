@@ -13,6 +13,11 @@ abstract class Model
 
     public abstract function getWhere($conditions);
 
+    protected function getIdField()
+    {
+        return "id";
+    }
+
     public function all()
     {
         return $this->getWhere([]);
@@ -33,9 +38,4 @@ abstract class Model
     public abstract function updateWhere($conditions, $data);
 
     public abstract function create($fields);
-
-    protected function getIdField()
-    {
-        return "id";
-    }
 }
